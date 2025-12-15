@@ -1,0 +1,64 @@
+<idea-plugin>
+    <id>com.example.bookmark-plugin</id>
+    <name>Bookmark</name>
+    <version>1.0.1</version>
+    <vendor email="zlwjj1001@gmail.com" url="https://www.example.com">大王不巡山</vendor>
+
+    <description><![CDATA[
+<h3>一个用于收藏编辑器和控制台内容的 IntelliJ IDEA 插件</h3>
+<ul>
+  <li>支持收藏编辑器中的选中文本</li>
+  <li>支持收藏控制台输出内容</li>
+  <li>支持标签分类管理</li>
+  <li>支持时间排序查看</li>
+  <li>提供工具窗口查看所有收藏</li>
+  <li>支持跳转到源位置</li>
+  <li>支持复制收藏内容</li>
+  <li>支持删除收藏项</li>
+</ul>
+    ]]></description>
+
+    <change-notes><![CDATA[
+    1.0.0 - 初始版本
+    - 支持编辑器和控制台内容收藏
+    - 支持标签分类和时间排序
+    - 提供工具窗口查看收藏内容
+    ]]></change-notes>
+
+    <!-- 兼容的IDE版本 -->
+    <idea-version since-build="212" until-build="241.*"/>
+
+    <!-- 插件依赖 -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- 注册工具窗口 -->
+        <toolWindow 
+            id="Bookmark" 
+            secondary="true" 
+            anchor="bottom" 
+            icon="/icons/bookmark.svg"
+            factoryClass="com.example.bookmark.ui.BookmarkToolWindowFactory"/>
+        
+        <!-- 注册应用级服务 -->
+        <applicationService serviceImplementation="com.example.bookmark.service.BookmarkStateService"/>
+        
+        <!-- 注册通知组 -->
+        <notificationGroup id="BookmarkPlugin" displayType="BALLOON"/>
+    </extensions>
+
+    <actions>
+        <!-- 注册收藏Action -->
+        <action 
+            id="BookmarkAction" 
+            class="com.example.bookmark.action.BookmarkAction" 
+            text="收藏选中内容" 
+            description="收藏当前选中的文本内容"
+            icon="/icons/bookmark.svg">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <add-to-group group-id="ConsoleEditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt B"/>
+        </action>
+    </actions>
+</idea-plugin>
+

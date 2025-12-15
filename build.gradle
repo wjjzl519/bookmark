@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '1.17.3'
+}
+
+group 'com.example'
+version '1.0.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+}
+
+intellij {
+    version = '2021.2'
+    type = 'IC' // IntelliJ IDEA Community Edition
+    plugins = []
+    instrumentCode = false
+}
+
+patchPluginXml {
+    changeNotes = """
+      <h3>1.0.0</h3>
+      <ul>
+        <li>初始版本：支持编辑器和控制台内容收藏</li>
+        <li>支持标签分类和时间排序</li>
+        <li>提供工具窗口查看收藏内容</li>
+      </ul>
+    """
+}
+
+test {
+    useJUnitPlatform()
+}
