@@ -5,17 +5,21 @@
     <vendor email="zlwjj1001@gmail.com" url="https://www.dawang.com">大王不巡山</vendor>
 
     <description><![CDATA[
-<h3>一个用于收藏编辑器和控制台内容的 IntelliJ IDEA 插件</h3>
+An IntelliJ IDEA plugin for bookmarking selected content from editors and console output. This plugin helps you save and organize important code snippets, console logs, and text selections with labels and notes.
+
+Features:
 <ul>
-  <li>支持收藏编辑器中的选中文本</li>
-  <li>支持收藏控制台输出内容</li>
-  <li>支持标签分类管理</li>
-  <li>支持时间排序查看</li>
-  <li>提供工具窗口查看所有收藏</li>
-  <li>支持跳转到源位置</li>
-  <li>支持复制收藏内容</li>
-  <li>支持删除收藏项</li>
+  <li>Bookmark selected text from editors</li>
+  <li>Bookmark console output content</li>
+  <li>Organize bookmarks with labels and categories</li>
+  <li>View bookmarks sorted by time</li>
+  <li>Tool window to view all bookmarks</li>
+  <li>Navigate to source location</li>
+  <li>Copy bookmark content</li>
+  <li>Delete bookmark items</li>
 </ul>
+
+一个用于收藏编辑器和控制台内容的 IntelliJ IDEA 插件。支持标签分类管理、时间排序查看、跳转到源位置等功能。
     ]]></description>
 
     <change-notes><![CDATA[
