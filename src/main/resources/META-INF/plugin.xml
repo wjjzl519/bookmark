@@ -1,8 +1,8 @@
 <idea-plugin>
-    <id>com.example.bookmark-plugin</id>
+    <id>com.dawang.bookmark-plugin</id>
     <name>Bookmark</name>
     <version>1.0.1</version>
-    <vendor email="zlwjj1001@gmail.com" url="https://www.example.com">大王不巡山</vendor>
+    <vendor email="zlwjj1001@gmail.com" url="https://www.dawang.com">大王不巡山</vendor>
 
     <description><![CDATA[
 <h3>一个用于收藏编辑器和控制台内容的 IntelliJ IDEA 插件</h3>
@@ -38,10 +38,10 @@
             secondary="true" 
             anchor="bottom" 
             icon="/icons/bookmark.svg"
-            factoryClass="com.example.bookmark.ui.BookmarkToolWindowFactory"/>
+            factoryClass="com.dawang.bookmark.ui.BookmarkToolWindowFactory"/>
         
         <!-- 注册应用级服务 -->
-        <applicationService serviceImplementation="com.example.bookmark.service.BookmarkStateService"/>
+        <applicationService serviceImplementation="com.dawang.bookmark.service.BookmarkStateService"/>
         
         <!-- 注册通知组 -->
         <notificationGroup id="BookmarkPlugin" displayType="BALLOON"/>
@@ -51,7 +51,7 @@
         <!-- 注册收藏Action -->
         <action 
             id="BookmarkAction" 
-            class="com.example.bookmark.action.BookmarkAction" 
+            class="com.dawang.bookmark.action.BookmarkAction"
             text="收藏选中内容" 
             description="收藏当前选中的文本内容"
             icon="/icons/bookmark.svg">
