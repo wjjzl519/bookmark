@@ -1,4 +1,4 @@
-package com.example.bookmark.model;
+package com.dawang.bookmark.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;

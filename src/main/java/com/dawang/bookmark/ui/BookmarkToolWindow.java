@@ -1,17 +1,13 @@
-package com.example.bookmark.ui;
+package com.dawang.bookmark.ui;
 
-import com.example.bookmark.model.BookmarkItem;
-import com.example.bookmark.service.BookmarkStateService;
+import com.dawang.bookmark.model.BookmarkItem;
+import com.dawang.bookmark.service.BookmarkStateService;
 import com.intellij.icons.AllIcons;
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.ActionToolbar;
 import com.intellij.openapi.actionSystem.DefaultActionGroup;
-import com.intellij.openapi.fileEditor.FileEditorManager;
-import com.intellij.openapi.fileEditor.OpenFileDescriptor;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
-import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.openapi.vfs.VirtualFileManager;
 import com.intellij.ui.components.JBScrollPane;
 import com.intellij.ui.treeStructure.Tree;
 

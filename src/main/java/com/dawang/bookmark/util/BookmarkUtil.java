@@ -1,4 +1,4 @@
-package com.example.bookmark.util;
+package com.dawang.bookmark.util;
 
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;

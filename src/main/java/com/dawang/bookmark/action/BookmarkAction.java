@@ -1,14 +1,14 @@
-package com.example.bookmark.action;
+package com.dawang.bookmark.action;
 
 import java.util.UUID;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.example.bookmark.model.BookmarkItem;
-import com.example.bookmark.service.BookmarkStateService;
-import com.example.bookmark.ui.BookmarkInputDialog;
-import com.example.bookmark.ui.BookmarkToolWindowFactory;
-import com.example.bookmark.util.BookmarkUtil;
+import com.dawang.bookmark.model.BookmarkItem;
+import com.dawang.bookmark.service.BookmarkStateService;
+import com.dawang.bookmark.ui.BookmarkInputDialog;
+import com.dawang.bookmark.ui.BookmarkToolWindowFactory;
+import com.dawang.bookmark.util.BookmarkUtil;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;

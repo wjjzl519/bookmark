@@ -1,6 +1,6 @@
-package com.example.bookmark.ui;
+package com.dawang.bookmark.ui;
 
-import com.example.bookmark.service.BookmarkStateService;
+import com.dawang.bookmark.service.BookmarkStateService;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogWrapper;
 import org.jetbrains.annotations.Nullable;

@@ -1,6 +1,6 @@
-package com.example.bookmark.ui;
+package com.dawang.bookmark.ui;
 
-import com.example.bookmark.model.BookmarkItem;
+import com.dawang.bookmark.model.BookmarkItem;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;

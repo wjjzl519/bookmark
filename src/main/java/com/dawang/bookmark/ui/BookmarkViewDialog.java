@@ -1,4 +1,4 @@
-package com.example.bookmark.ui;
+package com.dawang.bookmark.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -22,7 +22,7 @@ import javax.swing.JTextArea;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.example.bookmark.model.BookmarkItem;
+import com.dawang.bookmark.model.BookmarkItem;
 import com.intellij.icons.AllIcons;
 import com.intellij.notification.NotificationGroupManager;
 import com.intellij.notification.NotificationType;
@@ -175,7 +175,6 @@ public class BookmarkViewDialog extends DialogWrapper {
                         html.append("</ul>");
                         inList = false;
                     }
-                    String lang = trimmedLine.length() > 3 ? trimmedLine.substring(3).trim() : "";
                     html.append("<pre><code>");
                     inCodeBlock = true;
                 }

@@ -1,7 +1,7 @@
-package com.example.bookmark.service;
+package com.dawang.bookmark.service;
 
-import com.example.bookmark.model.BookmarkItem;
-import com.example.bookmark.model.BookmarkState;
+import com.dawang.bookmark.model.BookmarkItem;
+import com.dawang.bookmark.model.BookmarkState;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.State;
