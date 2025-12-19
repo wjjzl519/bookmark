@@ -66,7 +66,11 @@ public class BookmarkToolWindow {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                    navigateToBookmark();
+                    // 检查双击位置是否在有效节点上
+                    TreePath path = bookmarkTree.getPathForLocation(e.getX(), e.getY());
+                    if (path != null) {
+                        navigateToBookmark();
+                    }
                 }
             }
         });
@@ -182,14 +186,45 @@ public class BookmarkToolWindow {
             return;
         }
 
-        DefaultMutableTreeNode node = (DefaultMutableTreeNode) selectionPath.getLastPathComponent();
-        Object userObject = node.getUserObject();
+        try {
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) selectionPath.getLastPathComponent();
+            if (node == null) {
+                return;
+            }
 
-        if (userObject instanceof BookmarkItem) {
+            Object userObject = node.getUserObject();
+            if (userObject == null) {
+                return;
+            }
+
+            // 只处理 BookmarkItem 类型的节点，忽略标签节点和根节点
+            if (!(userObject instanceof BookmarkItem)) {
+                return;
+            }
+
             BookmarkItem item = (BookmarkItem) userObject;
-            // 显示 Markdown 查看对话框
-            BookmarkViewDialog dialog = new BookmarkViewDialog(project, item);
-            dialog.show();
+            // 确保在 UI 线程中执行，并添加异常处理
+            com.intellij.openapi.application.ApplicationManager.getApplication()
+                    .invokeLater(() -> {
+                        try {
+                            // 显示 Markdown 查看对话框
+                            BookmarkViewDialog dialog = new BookmarkViewDialog(project, item);
+                            dialog.show();
+                        } catch (Exception e) {
+                            // 如果对话框创建失败，显示错误消息
+                            Messages.showErrorDialog(
+                                    project,
+                                    "无法打开收藏内容对话框: " + e.getMessage(),
+                                    "错误");
+                            // 记录错误日志
+                            com.intellij.openapi.diagnostic.Logger.getInstance(BookmarkToolWindow.class)
+                                    .error("Failed to show bookmark dialog", e);
+                        }
+                    });
+        } catch (Exception e) {
+            // 捕获所有可能的异常，避免崩溃
+            com.intellij.openapi.diagnostic.Logger.getInstance(BookmarkToolWindow.class)
+                    .warn("Error in navigateToBookmark", e);
         }
     }
 

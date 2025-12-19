@@ -110,25 +110,40 @@ public class BookmarkViewDialog extends DialogWrapper {
         browserPanel = new JPanel(new BorderLayout());
         browserPanel.setBorder(BorderFactory.createTitledBorder("内容"));
 
-        if (JBCefApp.isSupported()) {
-            // 使用 JCEF 浏览器显示 Markdown
-            browser = new JBCefBrowser();
+        // 获取内容，确保不为 null
+        String content = item.getContent();
+        if (content == null) {
+            content = "";
+        }
 
-            // 将 Markdown 转换为 HTML
-            String htmlContent = convertMarkdownToHtml(item.getContent());
+        // 将 Markdown 转换为 HTML
+        String htmlContent = convertMarkdownToHtml(content);
 
-            // 加载 HTML 内容到浏览器
-            browser.loadHTML(htmlContent);
+        // 尝试使用 JCEF，如果失败则降级到 JEditorPane
+        boolean useJCEF = false;
+        try {
+            if (JBCefApp.isSupported()) {
+                // 使用 JCEF 浏览器显示 Markdown
+                browser = new JBCefBrowser();
+                // 加载 HTML 内容到浏览器
+                browser.loadHTML(htmlContent);
+                browserPanel.add(browser.getComponent(), BorderLayout.CENTER);
+                useJCEF = true;
+            }
+        } catch (Exception e) {
+            // JCEF 初始化失败，使用降级方案
+            useJCEF = false;
+            com.intellij.openapi.diagnostic.Logger.getInstance(BookmarkViewDialog.class)
+                    .warn("JCEF browser initialization failed, using fallback", e);
+        }
 
-            browserPanel.add(browser.getComponent(), BorderLayout.CENTER);
-        } else {
-            // JCEF 不支持时的降级方案
+        if (!useJCEF) {
+            // JCEF 不支持或初始化失败时的降级方案
             JEditorPane contentPane = new JEditorPane();
             contentPane.setContentType("text/html");
             contentPane.setEditable(false);
             contentPane.setBackground(Color.WHITE);
 
-            String htmlContent = convertMarkdownToHtml(item.getContent());
             contentPane.setText(htmlContent);
             contentPane.setCaretPosition(0);
 
@@ -438,7 +453,14 @@ public class BookmarkViewDialog extends DialogWrapper {
     public void dispose() {
         // 清理浏览器资源
         if (browser != null) {
-            browser.dispose();
+            try {
+                browser.dispose();
+            } catch (Exception e) {
+                // 忽略清理时的异常
+                com.intellij.openapi.diagnostic.Logger.getInstance(BookmarkViewDialog.class)
+                        .warn("Failed to dispose browser", e);
+            }
+            browser = null;
         }
         super.dispose();
     }
